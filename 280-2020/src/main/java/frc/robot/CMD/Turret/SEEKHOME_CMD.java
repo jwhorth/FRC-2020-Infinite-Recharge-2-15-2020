@@ -8,12 +8,16 @@
 package frc.robot.CMD.Turret;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter_SUB;
 
 public class SEEKHOME_CMD extends CommandBase {
   /**
    * Creates a new SEEKHOME_CMD.
    */
-  public SEEKHOME_CMD() {
+  private final Shooter_SUB s_shooter;
+  public SEEKHOME_CMD(Shooter_SUB shooter) {
+    s_shooter = shooter;
+    addRequirements(shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,6 +29,7 @@ public class SEEKHOME_CMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    s_shooter.goHome();
   }
 
   // Called once the command ends or is interrupted.

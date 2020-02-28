@@ -5,21 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.CMD.Turret;
+package frc.robot.CMD.Shooter;
+
+import frc.robot.subsystems.Shooter_SUB;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+//import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-public class SEEKTARGET_CMD extends CommandBase {
-  /**
-   * Creates a new SEEKTARGET_CMD.
-   */
-  public SEEKTARGET_CMD() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class STOPFLYWHEELS_CMD extends CommandBase  {
+  private final Shooter_SUB s_shooter;
+  public STOPFLYWHEELS_CMD(Shooter_SUB shooter) {
+    s_shooter = shooter;
+    addRequirements(shooter);
   }
+  /** 
+   * Creates a new STOPFLYWHEELS_CMD.
+   */// Use addRequirements() here to declare subsystem dependencies.
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    s_shooter.setKobeVelocityControl(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

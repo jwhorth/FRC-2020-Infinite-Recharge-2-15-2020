@@ -21,12 +21,12 @@ import frc.robot.subsystems.Drive_SUB;
 import frc.robot.subsystems.Shooter_SUB;
 import frc.robot.subsystems.Pickup_SUB;
 import frc.robot.subsystems.Pivot_SUB;
-import frc.robot.subsystems.Limelight_SUB;
+//import frc.robot.subsystems.Limelight_SUB;
 //import frc.robot.subsystems.Colorwheel_SUB;
 
 // CMD Imports
 import frc.robot.CMD.Hopper.FEEDBALL_CMD;
-import frc.robot.CMD.Shooter.NEUTRALSHOOT_CMD;
+//import frc.robot.CMD.Shooter.NEUTRALSHOOT_CMD;
 
 
 /**
@@ -40,15 +40,11 @@ public class RobotContainer {
   private static final Drive_SUB Drivetrain = new Drive_SUB();
   public static final Shooter_SUB Shooter = new Shooter_SUB();
   public static final Pickup_SUB PickUp = new Pickup_SUB();
-  public static final Limelight_SUB Limelight = new Limelight_SUB();
-  //public static final Colorwheel_SUB Colorwheel = new Colorwheel_SUB();
   public static final Pivot_SUB Pivot = new Pivot_SUB();
 
 
   //buttons
-  Joystick buttons = new Joystick(2);
-  JoystickButton b1  = new JoystickButton(buttons, 1);
-  JoystickButton b2 = new JoystickButton(buttons, 2);
+ 
   
 
 
@@ -73,8 +69,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    b1.toggleWhenPressed(new NEUTRALSHOOT_CMD(Shooter));
-    b2.toggleWhenPressed(new FEEDBALL_CMD(PickUp));
+   // b1.toggleWhenPressed(new NEUTRALSHOOT_CMD(Shooter));
+    //b2.toggleWhenPressed(new FEEDBALL_CMD(PickUp));
     
     
 

@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.I2C;
+
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -20,14 +20,15 @@ import edu.wpi.first.wpilibj.I2C;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    //Drive_SUB
+
+    //Drive_SUB Motor ID Values
     public static final int DRIVE_RGT_FRONT = 2;
     public static final int DRIVE_RGT_BACK = 3;
     public static final int DRIVE_LFT_FRONT = 4;
     public static final int DRIVE_LFT_BACK = 5;
     public static final int DRIVE_PIGEON = 50;
 
-    //Shoot_SUB
+    //Shoot_SUB Motor ID Values
     public static final int KOBE500_1 = 20;
     public static final int KOBE500_2 = 30;
     public static final int GASOL_1 = 40;
@@ -37,8 +38,7 @@ public final class Constants {
     public static final double SHOOTSPD = .5;
     public static final double NEGSHOOTSPD = -.375;
 
-    //Pickup_SUB
-    
+    //Pickup_SUB Motor ID Values
     public static final int PICKUP = 22;
     public static final int HOPPER = 33;
     public static final int HOPPER_2 = 44;
@@ -51,20 +51,26 @@ public final class Constants {
     public static final double HOPPER2SPD = 0.5;
     public static final double HOPPER3SPD = 0.5;
     
-    //Colorwheel_SUB
-    public static final int WHEEL = 12;
-    public static final I2C.Port WHEEL_SENSOR = I2C.Port.kOnboard;
-    
-    //Climb_SUB
+    //Climb_SUB Motor ID Values
     public static final int JORDAN = 23; 
 
     //Climb_SUB Motor Speeds
     public static final double JORDANSPD = 0.5;
     public static final double NEGJORDANSPD = -0.5;
 
-    //Pivot_SUB
+    //Pivot_SUB Motor ID Values
     public static final int PIVOT1 = 12;
     public static final int PIVOT2 = 13;
     public static final int PIVOTLIMIT = 14;
+
+    //Shooter_SUB Turret Constants
+    public static final int TURRET = 0;
+    
+	public static final double TURRET_HOME = 0;
+	public static final double TURRET_LEFT_BOUND = 0;
+    public static final double TURRET_RIGHT_BOUND = 0;
+    
+	public static final double TURRET_P = 0;
+	public static final double TURRET_D = 0;
 
 }

@@ -14,7 +14,7 @@ public class PIVOTUP_CMD extends CommandBase {
   private final Pivot_SUB Pivot;
   float sign;
   int distance;
-  double currentPOS = Pivot_SUB.Pivot1Position();
+  //double currentPOS = Pivot_SUB.Pivot1Position();
   
   public PIVOTUP_CMD(Pivot_SUB subsystem) {
     Pivot = subsystem;
