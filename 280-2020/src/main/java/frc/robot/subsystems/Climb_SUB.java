@@ -8,21 +8,45 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climb_SUB extends SubsystemBase {
+
+  WPI_TalonFX Jordan = new WPI_TalonFX(12);
+
+  boolean goUp = true;
+  boolean goDown = true;
+
+  double climbP = 0;
+  double climbI = 0;
+  double climbD = 0;
+
+  public double ClimbTop = Constants.CLIMB_TOP;
+  public double ClimbBottom = Constants.CLIMB_BOTTOM;
   /**
    * Creates a new Climb_SUB.
    */
   public Climb_SUB() {
-    
+    Jordan.config_kP(0, climbP);
+    Jordan.config_kI(0, climbI);
+    Jordan.config_kD(0, climbD);
   }
 
-  CANSparkMax Jordan = new CANSparkMax(Constants.JORDAN, MotorType.kBrushless);
+  public void SeekUp(){
+    if (Jordan.getSelectedSensorPosition() == ClimbTop) {
+      boolean goUp = false;
+    } else {
+      goUp = true;
+    }
+  }
+  public void SeekDown(){
+    if (Jordan.getSelectedSensorPosition() == ClimbBottom) {
+      boolean goDown = false;
+    } else {
+      goDown = true;
+    }
+  }
   
 
   //CMDs for climb motor

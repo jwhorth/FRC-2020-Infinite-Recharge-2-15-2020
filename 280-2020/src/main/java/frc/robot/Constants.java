@@ -58,6 +58,10 @@ public final class Constants {
     public static final double JORDANSPD = 0.5;
     public static final double NEGJORDANSPD = -0.5;
 
+    //Clim_SUB Encoder Counts
+    public static final double CLIMB_TOP = 0;
+    public static final double CLIMB_BOTTOM = 0;
+
     //Pivot_SUB Motor ID Values
     public static final int PIVOT1 = 12;
     public static final int PIVOT2 = 13;

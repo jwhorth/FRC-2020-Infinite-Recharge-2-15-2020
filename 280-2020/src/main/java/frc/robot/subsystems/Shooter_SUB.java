@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -157,12 +158,14 @@ public void spinKobeMotors(double speed) {
 public void setKobeVelocityControl(double rpm) {
   Kobe1.set(ControlMode.Velocity, rpm);
 }
+
 /////////////////////////////////////////////////
 
 public double getTurretTicks() {
   return Turret.getSelectedSensorPosition();
 }
 ///////////////////////
+
 
 
 
@@ -200,6 +203,13 @@ public double turretDistFromHome() {
 
 
 
+
+
+
+
+
+
+
  @Override
   public void periodic() {
     
@@ -230,4 +240,12 @@ public double turretDistFromHome() {
 
 
   }
+
+
+
+
+
+
+
+
 }

@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.CMD.Turret;
+package frc.robot.CMD.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter_SUB;
 
-public class TESTManualTurretRight_CMD extends CommandBase {
-  private final Shooter_SUB Turret;
+public class SHOOTRPM10000_CMD extends CommandBase {
+  private final Shooter_SUB Shooter;
   /**
-   * Creates a new TESTManualTurretRight_CMD.
+   * Creates a new TESTmanualShot_CMD.
    */
-  public TESTManualTurretRight_CMD(Shooter_SUB subsystem) {
-    Turret =  subsystem;
+  public SHOOTRPM10000_CMD(Shooter_SUB subsystem) {
+    Shooter =  subsystem;
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -24,11 +24,8 @@ public class TESTManualTurretRight_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-    Turret.spinTurretMotor(0.2);
-=======
-    Turret.spinTurretMotor(0.03);
->>>>>>> Stashed changes
+    Shooter.setKobeVelocityControl(10000);
+    Shooter.track();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,7 +36,7 @@ public class TESTManualTurretRight_CMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Turret.spinTurretMotor(0);
+    Shooter.setKobeVelocityControl(0);
   }
 
   // Returns true when the command should end.

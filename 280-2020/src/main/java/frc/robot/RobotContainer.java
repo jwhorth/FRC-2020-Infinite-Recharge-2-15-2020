@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.subsystems.Climb_SUB;
 // SubSystem Imports
 //import frc.robot.subsystems.Climb_SUB;
 import frc.robot.subsystems.Drive_SUB;
@@ -25,7 +25,7 @@ import frc.robot.subsystems.Pivot_SUB;
 //import frc.robot.subsystems.Colorwheel_SUB;
 
 // CMD Imports
-import frc.robot.CMD.Hopper.FEEDBALL_CMD;
+//import frc.robot.CMD.Hopper.FEEDBALL_CMD;
 //import frc.robot.CMD.Shooter.NEUTRALSHOOT_CMD;
 
 
@@ -41,6 +41,7 @@ public class RobotContainer {
   public static final Shooter_SUB Shooter = new Shooter_SUB();
   public static final Pickup_SUB PickUp = new Pickup_SUB();
   public static final Pivot_SUB Pivot = new Pivot_SUB();
+  public static final Climb_SUB Climber = new Climb_SUB();
 
 
   //buttons

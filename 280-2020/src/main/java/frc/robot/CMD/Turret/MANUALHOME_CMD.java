@@ -10,25 +10,21 @@ package frc.robot.CMD.Turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter_SUB;
 
-public class TESTManualTurretRight_CMD extends CommandBase {
-  private final Shooter_SUB Turret;
+public class MANUALHOME_CMD extends CommandBase {
+  private final Shooter_SUB GoHome;
   /**
-   * Creates a new TESTManualTurretRight_CMD.
+   * Creates a new MANUALHOME_CMD.
    */
-  public TESTManualTurretRight_CMD(Shooter_SUB subsystem) {
-    Turret =  subsystem;
-    addRequirements(subsystem);
+  public MANUALHOME_CMD(Shooter_SUB subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    GoHome = subsystem;
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-    Turret.spinTurretMotor(0.2);
-=======
-    Turret.spinTurretMotor(0.03);
->>>>>>> Stashed changes
+    GoHome.goHome();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,7 +35,6 @@ public class TESTManualTurretRight_CMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Turret.spinTurretMotor(0);
   }
 
   // Returns true when the command should end.
