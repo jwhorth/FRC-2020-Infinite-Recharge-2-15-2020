@@ -34,21 +34,31 @@ public class Pivot_SUB extends SubsystemBase {
 
   public CANEncoder encoder0 = new CANEncoder(Pivot1);
   public CANEncoder encoder1 = new CANEncoder(Pivot2);
+
+  public double PivotUpStop = Constants.PivotUpStop;
+  public double PivotDownStop = Constants.PivotDownStop;
+
+  public double testPivotUpStop = Constants.testPivotUpStop;
+  public double testPivotDownStop = Constants.testPivotDownStop;
+
+  boolean goUp = true;
+  boolean goDown = true;
   
-  
+  boolean testgoUp = true;
+  boolean testgoDown = true;
+
   private SpeedController Pivotgroup = new SpeedControllerGroup(Pivot1, Pivot2);
   
   //Postions for Pivot
   public double DownPOS = -1000; //Down to 90 degrees
   public double AlmostDownPOS = 1000; //slightly less than down
-  public double home = 0; //Home is home
+  public double PivotHome = 0; //Home is home
   
   
   
   
   public Pivot_SUB() {
-    Pivot1.setInverted(true);
-    
+   
     //PID1
     pid0.setP(0);
     pid0.setI(0);
@@ -108,16 +118,22 @@ public void PivotPOSTest(double POS){
   pid1.setReference(POS, ControlType.kPosition);   
 }
 
- //Low hatch position
- public void setArmHatchLow(){
+ //Pivot at down POS to use intake
+ public void SetPivotDownPOS(){
   pid0.setReference(DownPOS, ControlType.kPosition);
   pid1.setReference(DownPOS, ControlType.kPosition);
 }
 
-//Cargo ship cargo position
-public void setArmCargoShip(){
+//Pivot at almostdown POS for picking up balls on the upper parts
+public void SetPivotAlmostDownPOS(){
   pid0.setReference(AlmostDownPOS, ControlType.kPosition);
   pid1.setReference(AlmostDownPOS, ControlType.kPosition);
+}
+
+// Pivot at it's up home POS
+public void PivotHome(){
+  pid0.setReference(PivotHome, ControlType.kPosition);
+    pid1.setReference(PivotHome, ControlType.kPosition);
 }
 
 

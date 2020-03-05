@@ -46,10 +46,15 @@ public class Shooter_SUB extends SubsystemBase {
   public double turretLeftStop = Constants.TURRET_LEFT_BOUND;
   public double turretRightStop = Constants.TURRET_RIGHT_BOUND;
 
+  public double testturretLeftStop = Constants.testTURRET_LEFT_BOUND;
+  public double testturretRightStop = Constants.testTURRET_RIGHT_BOUND;
+
   boolean goLeft = true;
   boolean goRight = true;
 
-  
+  boolean testgoLeft = true;
+  boolean testgoRight = true;
+
   public NetworkTable table;
   NetworkTableEntry tableTx, tableTy, tableTv;
   double tx, ty, tv;
@@ -90,9 +95,9 @@ public class Shooter_SUB extends SubsystemBase {
 
 
  public void spinTurretMotor(double speed) {
-  if (goLeft && speed < 0) {
+  if (testgoLeft && speed < 0) {
     Turret.set(speed);
-  } else if (goRight && speed > 0) {
+  } else if (testgoRight && speed > 0) {
     Turret.set(speed);
   } else {
     Turret.set(0);
@@ -142,6 +147,23 @@ public void hardStopConfiguration() {
   } else {
     // turretTalon.configPeakOutputForward(1, 10);
     goLeft = true;
+  }
+}
+
+public void testhardStopConfiguration() {
+  if (Turret.getSelectedSensorPosition() > testturretRightStop) {
+    // turretTalon.configPeakOutputReverse(0, 10);
+    testgoRight = false;
+  } else {
+    // turretTalon.configPeakOutputReverse(-1, 10);
+    testgoRight = true;
+  }
+  if (Turret.getSelectedSensorPosition() < testturretLeftStop) {
+    // turretTalon.configPeakOutputForward(0, 10);
+    testgoLeft = false;
+  } else {
+    // turretTalon.configPeakOutputForward(1, 10);
+    testgoLeft = true;
   }
 }
 /////////////////////////////////////////////////////

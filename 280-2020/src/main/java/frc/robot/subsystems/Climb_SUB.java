@@ -18,12 +18,18 @@ public class Climb_SUB extends SubsystemBase {
   boolean goUp = true;
   boolean goDown = true;
 
+  boolean testgoUp = true;
+  boolean testgoDown = true;
+
   double climbP = 0;
   double climbI = 0;
   double climbD = 0;
 
   public double ClimbTop = Constants.CLIMB_TOP;
   public double ClimbBottom = Constants.CLIMB_BOTTOM;
+
+  public double testClimbTop = Constants.CLIMB_TOP;
+  public double testClimbBottom = Constants.CLIMB_BOTTOM;
   /**
    * Creates a new Climb_SUB.
    */
@@ -33,21 +39,41 @@ public class Climb_SUB extends SubsystemBase {
     Jordan.config_kD(0, climbD);
   }
 
-  public void SeekUp(){
+  public void HardStop(){
     if (Jordan.getSelectedSensorPosition() == ClimbTop) {
-      boolean goUp = false;
+      goUp = false;
     } else {
       goUp = true;
     }
-  }
-  public void SeekDown(){
     if (Jordan.getSelectedSensorPosition() == ClimbBottom) {
-      boolean goDown = false;
+      goDown = false;
     } else {
       goDown = true;
     }
   }
-  
+
+  public void testHardStop(){
+    if (Jordan.getSelectedSensorPosition() == testClimbTop) {
+      testgoUp = false;
+    } else {
+      testgoUp = true;
+    }
+    if (Jordan.getSelectedSensorPosition() == testClimbBottom) {
+      testgoDown = false;
+    } else {
+      testgoDown = true;
+    }
+  }
+ 
+  public void SpinClimberMotor(double speed) {
+    if (testgoUp && speed < 0) {
+      Jordan.set(speed);
+    } else if (testgoDown && speed > 0) {
+      Jordan.set(speed);
+    } else {
+      Jordan.set(0);
+    }
+  }
 
   //CMDs for climb motor
   public void ClimberUp() {

@@ -8,18 +8,23 @@
 package frc.robot.CMD.Pivot;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pivot_SUB;
 
 public class PIVOTDOWN_CMD extends CommandBase {
+  private final Pivot_SUB Pivot;
   /**
    * Creates a new PIVOTDOWN_CMD.
    */
-  public PIVOTDOWN_CMD() {
+  public PIVOTDOWN_CMD(Pivot_SUB subsystem) {
+    Pivot = subsystem;
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Pivot.SetPivotAlmostDownPOS();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

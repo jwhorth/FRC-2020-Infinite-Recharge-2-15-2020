@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Pivot_SUB;
 
 public class PIVOTUP_CMD extends CommandBase {
+
   private final Pivot_SUB Pivot;
-  float sign;
-  int distance;
-  //double currentPOS = Pivot_SUB.Pivot1Position();
-  
+  //float sign;
+  //int distance;
+
   public PIVOTUP_CMD(Pivot_SUB subsystem) {
     Pivot = subsystem;
     addRequirements(subsystem);
@@ -25,6 +25,7 @@ public class PIVOTUP_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Pivot.PivotHome();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

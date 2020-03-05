@@ -8,18 +8,23 @@
 package frc.robot.CMD.Pivot;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pivot_SUB;
 
 public class PIVOTALMOSTDOWN_CMD extends CommandBase {
+  private final Pivot_SUB Pivot;
   /**
    * Creates a new PIVOTALMOSTDOWN_CMD.
    */
-  public PIVOTALMOSTDOWN_CMD() {
+  public PIVOTALMOSTDOWN_CMD(Pivot_SUB subsystem) {
+    Pivot = subsystem;
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Pivot.SetPivotDownPOS();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
