@@ -10,12 +10,13 @@ package frc.robot.CMD.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Pickup_SUB;
 
-public class IntakeIn_CMD extends CommandBase {
- private final Pickup_SUB Intake;
+public class INTAKEIN_CMD extends CommandBase {
+  private final Pickup_SUB Intake;
+
   /**
    * Creates a new TESTmanualIntakeIn_CMD.
    */
-  public IntakeIn_CMD(Pickup_SUB subsystem) {
+  public INTAKEIN_CMD(Pickup_SUB subsystem) {
     Intake = subsystem;
     addRequirements(subsystem);
 

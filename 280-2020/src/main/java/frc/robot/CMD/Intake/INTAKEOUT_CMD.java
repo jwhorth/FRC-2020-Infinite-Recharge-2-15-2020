@@ -10,12 +10,13 @@ package frc.robot.CMD.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Pickup_SUB;
 
-public class IntakeOut_CMD extends CommandBase {
+public class INTAKEOUT_CMD extends CommandBase {
   private final Pickup_SUB IntakeOut;
+
   /**
    * Creates a new TESTmanualIntakeOut_CMD.
    */
-  public IntakeOut_CMD(Pickup_SUB subsystem) {
+  public INTAKEOUT_CMD(Pickup_SUB subsystem) {
     IntakeOut = subsystem;
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.

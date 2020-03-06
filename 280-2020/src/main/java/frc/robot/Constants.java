@@ -26,7 +26,7 @@ public final class Constants {
     public static final int DRIVE_RGT_BACK = 3;
     public static final int DRIVE_LFT_FRONT = 4;
     public static final int DRIVE_LFT_BACK = 5;
-    public static final int DRIVE_PIGEON = 50;
+    public static final int DRIVE_PIGEON = 66;
 
     //Shoot_SUB Motor ID Values
     public static final int KOBE500_1 = 20;
@@ -42,21 +42,22 @@ public final class Constants {
     public static final int PICKUP = 22;
     public static final int HOPPER = 33;
     public static final int HOPPER_2 = 44;
-    public static final int HOPPER_3 = 55;
+    public static final int HOPPER_3 = 0;
     
 
     //Pickup_SUB Motor Speeds
-    public static final double INTAKESPD = 0.5;
-    public static final double HOPPER1SPD = 0.5;
-    public static final double HOPPER2SPD = 0.5;
-    public static final double HOPPER3SPD = 0.5;
+    public static final double INTAKESPD = 0;
+    public static final double HOPPER1SPD = 0;
+    public static final double HOPPER2SPD = 0;
+    public static final double HOPPER3SPD = 0;
+    public static final double PUSHOUT = 0;
     
     //Climb_SUB Motor ID Values
     public static final int JORDAN = 23; 
 
     //Climb_SUB Motor Speeds
-    public static final double JORDANSPD = 0.5;
-    public static final double NEGJORDANSPD = -0.5;
+    public static final double JORDANSPD = 0;
+    public static final double NEGJORDANSPD = 0;
 
     //Clim_SUB Encoder Counts
     public static final double CLIMB_TOP = 0;
@@ -68,7 +69,7 @@ public final class Constants {
     public static final int PIVOTLIMIT = 14;
 
     //Shooter_SUB Turret Constants
-    public static final int TURRET = 0;
+    public static final int TURRET = 55;
     
 	public static final double TURRET_HOME = 0;
 	public static final double TURRET_LEFT_BOUND = 0;
@@ -76,5 +77,13 @@ public final class Constants {
     
 	public static final double TURRET_P = 0;
 	public static final double TURRET_D = 0;
+	public static final double testTURRET_LEFT_BOUND = 0;
+    public static final double testTURRET_RIGHT_BOUND = 0;
+    
+
+	public static final double PivotUpStop = 0;
+	public static final double PivotDownStop = 0;
+	public static double testPivotUpStop = 0;
+	public static double testPivotDownStop = 0;
 
 }

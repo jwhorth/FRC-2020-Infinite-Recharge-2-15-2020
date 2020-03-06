@@ -26,7 +26,8 @@ public class TESTmanualTurretLeft_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Turret.spinTurretMotor(-0.03);
+    Turret.spinTurretMotor(-0.5);
+    Turret.getTurretTicks();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,6 +39,7 @@ public class TESTmanualTurretLeft_CMD extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Turret.spinTurretMotor(0);
+    Turret.getTurretTicks();
   }
 
   // Returns true when the command should end.

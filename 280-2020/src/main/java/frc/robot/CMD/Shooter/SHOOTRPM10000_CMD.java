@@ -24,8 +24,8 @@ public class SHOOTRPM10000_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter.setKobeVelocityControl(10000);
-    Shooter.track();
+    Shooter.setKobeVelocityControl(1000);
+    //Shooter.track();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

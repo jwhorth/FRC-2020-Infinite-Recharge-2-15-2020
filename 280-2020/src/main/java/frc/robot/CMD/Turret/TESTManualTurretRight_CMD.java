@@ -24,7 +24,7 @@ public class TESTManualTurretRight_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Turret.spinTurretMotor(0.03);
+    Turret.spinTurretMotor(0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

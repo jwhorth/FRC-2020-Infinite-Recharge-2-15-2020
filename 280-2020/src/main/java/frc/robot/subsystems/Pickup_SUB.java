@@ -36,6 +36,11 @@ public class Pickup_SUB extends SubsystemBase {
     intake.set(0);
   }
 
+  //CMD for pushing out robot
+  public void pushOut() {
+    intake.set(Constants.PUSHOUT);
+  }
+
   //CMDs for theoretical hopper system
 
   //first hopper
@@ -66,4 +71,5 @@ public class Pickup_SUB extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 }

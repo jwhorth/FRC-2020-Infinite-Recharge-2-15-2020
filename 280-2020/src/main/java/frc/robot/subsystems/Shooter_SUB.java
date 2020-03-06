@@ -12,8 +12,13 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -58,6 +63,43 @@ public class Shooter_SUB extends SubsystemBase {
   public NetworkTable table;
   NetworkTableEntry tableTx, tableTy, tableTv;
   double tx, ty, tv;
+
+
+
+  // Shuffleboard
+  ShuffleboardTab shooterTab = Shuffleboard.getTab("Shooter");
+  // ShuffleboardLayout llLayout = shooterTab.getLayout("Limelight", BuiltInLayouts.kList).withSize(4, 2).withPosition(0, 1);
+  NetworkTableEntry turPos = shooterTab.add("Turret Position (ticks)", 0)
+    .withWidget(BuiltInWidgets.kNumberBar)
+    .withProperties(Map.of("min", turretLeftStop, "max", turretRightStop))
+    .withSize(2, 1)
+    .withPosition(0, 0).getEntry();
+  NetworkTableEntry distFromHome = shooterTab.add("Turret Distance from Home (ticks)", 0)
+    .withSize(2, 1)
+    .withPosition(2, 0).getEntry();
+  NetworkTableEntry shootRPM = shooterTab.add("Shooter RPM", 0)
+    .withWidget(BuiltInWidgets.kGraph)
+    .withPosition(5, 0).getEntry();
+  NetworkTableEntry distFromPort = shooterTab.add("Distance from Outer Port", 0)
+    .withWidget(BuiltInWidgets.kNumberBar)
+    .withProperties(Map.of("min", 12, "max", 629))
+    .withSize(3, 1)
+    .withPosition(5, 2).getEntry();
+  // NetworkTableEntry xOffset = llLayout.add("X Offset Angle (degrees)", 0)
+  //  .withWidget(BuiltInWidgets.kDial).getEntry();
+  // NetworkTableEntry seeTarget = llLayout.add("Sees Target?", "no data").getEntry();
+  NetworkTableEntry homeFound = shooterTab.add("Home Found", "false")
+    .withPosition(8, 1).getEntry();
+  NetworkTableEntry turretSpeed = shooterTab.add("Turrent Percent", -1)
+    .withPosition(8, 2).getEntry();
+  
+  public ShuffleboardTab getTab() {
+    return shooterTab;
+  }
+  //
+
+
+
 
 
   boolean wasHomeFound = false;
