@@ -71,14 +71,14 @@ public final class Constants {
     //Shooter_SUB Turret Constants
     public static final int TURRET = 55;
     
-	public static final double TURRET_HOME = 0;
+	public static final double TURRET_HOME = 824;
 	public static final double TURRET_LEFT_BOUND = 0;
     public static final double TURRET_RIGHT_BOUND = 0;
     
-	public static final double TURRET_P = 0;
+	public static final double TURRET_P = .7;
 	public static final double TURRET_D = 0;
-	public static final double testTURRET_LEFT_BOUND = 0;
-    public static final double testTURRET_RIGHT_BOUND = 0;
+	public static final double testTURRET_LEFT_BOUND = 10;
+    public static final double testTURRET_RIGHT_BOUND = 1832;
     
 
 	public static final double PivotUpStop = 0;

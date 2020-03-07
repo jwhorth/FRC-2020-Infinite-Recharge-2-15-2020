@@ -24,12 +24,13 @@ public class MANUALHOME_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    GoHome.goHome();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    GoHome.goHome();
   }
 
   // Called once the command ends or is interrupted.

@@ -43,8 +43,10 @@ public class Shooter_SUB extends SubsystemBase {
   double turretP = Constants.TURRET_P;
   double turretD = Constants.TURRET_D;
   PIDController turretPIDController = new PIDController(turretP, 0, turretD);
+  
 
 
+  
 
   public double turretCurrentPos;
   public double turretHome = Constants.TURRET_HOME;
@@ -103,9 +105,9 @@ public class Shooter_SUB extends SubsystemBase {
 
 
   boolean wasHomeFound = false;
-  int hoodCollisionAmps = 15;
  
-  double flywheelP = 1;
+ 
+  double flywheelP = .27;
   double flywheelI = 0;
   double flywheelD = 0;
   double flywheelF = 0.05115;
@@ -121,8 +123,10 @@ public class Shooter_SUB extends SubsystemBase {
     Kobe1.config_kD(0, flywheelD);
     Kobe1.config_kF(0, flywheelF);
 
+    
     Turret.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     Turret.configFeedbackNotContinuous(true, 10); // important for absolute encoders not to jump ticks randomly
+    
  }
 ///////////////////////////////////////////////////////
 
@@ -149,13 +153,19 @@ public class Shooter_SUB extends SubsystemBase {
 public void goHome() {
   if ((turretCurrentPos > turretHome) && (turretCurrentPos - turretHome > 50)) {
     // If you're to the right of the center, move left until you're within 50 ticks (turret deadband)
-    spinTurretMotor(0.3);
+    spinTurretMotor(0.7);
   } else if ((turretCurrentPos < turretHome) && (turretCurrentPos - turretHome < -50)) {
     // If you're to the left of the center, move right until you're within 50 ticks
-    spinTurretMotor(-0.3);
+    spinTurretMotor(-0.7);
   } else {
     spinTurretMotor(0);
   }
+}
+
+
+
+public void resetencoder(){
+  Turret.setSelectedSensorPosition(0);
 }
 /////////////////////////////////////////////////////////////////
 
@@ -212,6 +222,9 @@ public void testhardStopConfiguration() {
 public int getKobeSpeed() {
   return Kobe1.getSelectedSensorVelocity();
 }
+
+
+
 ///////////////////////////////////////////////////////
 public void spinKobeMotors(double speed) {
   Kobe1.set(speed);
@@ -276,11 +289,15 @@ public double turretDistFromHome() {
 
  @Override
   public void periodic() {
+    System.out.println(getTurretTicks());
+    
+
     
     updateLimelight();
-    hardStopConfiguration();
+    //hardStopConfiguration();
+    testhardStopConfiguration();
     turretCurrentPos = Turret.getSelectedSensorPosition();
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
 
 
