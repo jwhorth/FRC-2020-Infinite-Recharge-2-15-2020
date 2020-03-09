@@ -23,18 +23,20 @@ public class TRACK_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    s_shooter.table.getEntry("ledMode").setNumber(3);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    s_shooter.table.getEntry("ledMode").setNumber(3);
     s_shooter.track();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    
     s_shooter.table.getEntry("ledMode").setNumber(1);
   }
 

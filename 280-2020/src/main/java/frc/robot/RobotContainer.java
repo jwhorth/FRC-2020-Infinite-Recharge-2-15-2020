@@ -78,8 +78,8 @@ public class RobotContainer {
   private static JoystickButton SeekHome = new JoystickButton(TEST, 1);
   private static JoystickButton TurretLeft = new JoystickButton(TEST, 2);
   private static JoystickButton TurretRight = new JoystickButton(TEST, 3);
-  private static JoystickButton rpmSLOW = new JoystickButton(TEST, 4);
-  private static JoystickButton RESET = new JoystickButton(TEST, 5);
+ // private static JoystickButton rpmSLOW = new JoystickButton(TEST, 4);
+private static JoystickButton Tracktest = new JoystickButton(TEST, 7);
   private static JoystickButton ToggleLL = new JoystickButton(TEST, 6);
 
   // Command Chains
@@ -117,10 +117,10 @@ public class RobotContainer {
     SeekHome.whenHeld(new SEEKHOME_CMD(Shooter));
     TurretLeft.whenHeld(new TESTmanualTurretLeft_CMD(Shooter));
     TurretRight.whenHeld(new TESTManualTurretRight_CMD(Shooter));
-    rpmSLOW.whenHeld(new SHOOTRPM10000_CMD(Shooter));
-    RESET.whenHeld(new RESETENCODER_CMD(Shooter));
+    //rpmSLOW.toggleWhenPressed(new SHOOTRPM10000_CMD(Shooter));
     ToggleLL.toggleWhenPressed(new TOGGLELL_CMD(Shooter));
-
+    Tracktest.toggleWhenPressed(new TRACK_CMD(Shooter));
+    
     
 
     

@@ -53,14 +53,13 @@ public class Shooter_SUB extends SubsystemBase {
   public double turretLeftStop = Constants.TURRET_LEFT_BOUND;
   public double turretRightStop = Constants.TURRET_RIGHT_BOUND;
 
-  public double testturretLeftStop = Constants.testTURRET_LEFT_BOUND;
-  public double testturretRightStop = Constants.testTURRET_RIGHT_BOUND;
+ 
 
   boolean goLeft = true;
   boolean goRight = true;
 
-  boolean testgoLeft = true;
-  boolean testgoRight = true;
+
+  
 
   public NetworkTable table;
   NetworkTableEntry tableTx, tableTy, tableTv;
@@ -98,7 +97,16 @@ public class Shooter_SUB extends SubsystemBase {
   public ShuffleboardTab getTab() {
     return shooterTab;
   }
-  //
+  
+
+  public void setShuffleboard() {
+    turPos.setDouble(Turret.getSelectedSensorPosition());
+    shootRPM.setDouble(Kobe1.getSelectedSensorVelocity());
+    distFromHome.setDouble(turretDistFromHome());
+    //seeTarget.setString(Boolean.toString(limelightSeesTarget()));
+    //xOffset.setDouble(tx.getDouble(-1));
+    //distFromPort.setDouble(getPortDist());
+  }
 
 
 
@@ -113,7 +121,16 @@ public class Shooter_SUB extends SubsystemBase {
   double flywheelF = 0.05115;
   
 
-  /////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
   public Shooter_SUB() { 
     Kobe2.follow(Kobe1);
     Kobe2.setInverted(InvertType.OpposeMaster);
@@ -128,7 +145,6 @@ public class Shooter_SUB extends SubsystemBase {
     Turret.configFeedbackNotContinuous(true, 10); // important for absolute encoders not to jump ticks randomly
     
  }
-///////////////////////////////////////////////////////
 
 
 
@@ -137,26 +153,29 @@ public class Shooter_SUB extends SubsystemBase {
 
 
 
-//Methods ////////////////////////////////////////////////
+
+//Methods 
 
 
  public void spinTurretMotor(double speed) {
-  if (testgoLeft && speed < 0) {
+  if (goLeft && speed < 0) {
     Turret.set(speed);
-  } else if (testgoRight && speed > 0) {
+  } else if (goRight && speed > 0) {
     Turret.set(speed);
   } else {
     Turret.set(0);
   }
 }
-/////////////////////////////////////////////////////////////////
+
+
+
 public void goHome() {
   if ((turretCurrentPos > turretHome) && (turretCurrentPos - turretHome > 50)) {
     // If you're to the right of the center, move left until you're within 50 ticks (turret deadband)
-    spinTurretMotor(0.7);
+    spinTurretMotor(0.2);
   } else if ((turretCurrentPos < turretHome) && (turretCurrentPos - turretHome < -50)) {
     // If you're to the left of the center, move right until you're within 50 ticks
-    spinTurretMotor(-0.7);
+    spinTurretMotor(-0.2);
   } else {
     spinTurretMotor(0);
   }
@@ -167,33 +186,39 @@ public void goHome() {
 public void resetencoder(){
   Turret.setSelectedSensorPosition(0);
 }
-/////////////////////////////////////////////////////////////////
+
+
+
 
 public void track() {
   if (limelightSeesTarget()) {
-    double heading_error = -tx + 0.5; // in order to change the target offset (in degrees), add it here
+    double heading_error = -tx + 0; // in order to change the target offset (in degrees), add it here
     // How much the limelight is looking away from the target (in degrees)
 
     double steering_adjust = turretPIDController.calculate(heading_error);
     // Returns the next output of the PID controller (where it thinks the turret should go)
     
     double xDiff = 0 - steering_adjust;
-    double xCorrect = 0.05 * xDiff;
+    double xCorrect = 0.15 * xDiff;
     spinTurretMotor(xCorrect);
   } else {
     goHome();
   }
 }
-/////////////////////////////////////
+
+
+
+
+
 public void hardStopConfiguration() {
-  if (Turret.getSelectedSensorPosition() > turretRightStop) {
+  if (Turret.getSelectedSensorPosition() < turretRightStop) {
     // turretTalon.configPeakOutputReverse(0, 10);
     goRight = false;
   } else {
     // turretTalon.configPeakOutputReverse(-1, 10);
     goRight = true;
   }
-  if (Turret.getSelectedSensorPosition() < turretLeftStop) {
+  if (Turret.getSelectedSensorPosition() > turretLeftStop) {
     // turretTalon.configPeakOutputForward(0, 10);
     goLeft = false;
   } else {
@@ -202,46 +227,32 @@ public void hardStopConfiguration() {
   }
 }
 
-public void testhardStopConfiguration() {
-  if (Turret.getSelectedSensorPosition() > testturretRightStop) {
-    // turretTalon.configPeakOutputReverse(0, 10);
-    testgoRight = false;
-  } else {
-    // turretTalon.configPeakOutputReverse(-1, 10);
-    testgoRight = true;
-  }
-  if (Turret.getSelectedSensorPosition() < testturretLeftStop) {
-    // turretTalon.configPeakOutputForward(0, 10);
-    testgoLeft = false;
-  } else {
-    // turretTalon.configPeakOutputForward(1, 10);
-    testgoLeft = true;
-  }
-}
-/////////////////////////////////////////////////////
+
+//Test Hard Stop delete later
+
+
 public int getKobeSpeed() {
   return Kobe1.getSelectedSensorVelocity();
 }
 
 
 
-///////////////////////////////////////////////////////
 public void spinKobeMotors(double speed) {
   Kobe1.set(speed);
 }
-///////////////////////////////////////////////////////
+
 
 
 public void setKobeVelocityControl(double rpm) {
   Kobe1.set(ControlMode.Velocity, rpm);
 }
 
-/////////////////////////////////////////////////
+
 
 public double getTurretTicks() {
   return Turret.getSelectedSensorPosition();
 }
-///////////////////////
+
 
 
 
@@ -294,10 +305,10 @@ public double turretDistFromHome() {
 
     
     updateLimelight();
-    //hardStopConfiguration();
-    testhardStopConfiguration();
+    setShuffleboard();
+    hardStopConfiguration();
     turretCurrentPos = Turret.getSelectedSensorPosition();
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
 
 
