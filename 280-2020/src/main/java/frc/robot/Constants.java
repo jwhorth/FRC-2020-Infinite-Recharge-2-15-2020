@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-
+import com.revrobotics.CANSparkMax;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide

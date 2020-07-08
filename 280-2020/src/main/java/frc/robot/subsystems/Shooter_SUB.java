@@ -5,6 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+
+//Make Public Voids for PID Values for Shooter
+//Make Shuffleboard Controls for PID for Turret
+
+
+
+
+
+
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -14,11 +25,18 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+<<<<<<< Updated upstream
+=======
+
+import java.util.Map;
+
+>>>>>>> Stashed changes
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.music.Orchestra;
 
 
 
@@ -29,7 +47,6 @@ public class Shooter_SUB extends SubsystemBase {
   WPI_TalonFX Kobe1 = new WPI_TalonFX(Constants.KOBE500_1);
   WPI_TalonFX Kobe2 = new WPI_TalonFX(Constants.KOBE500_2);
   WPI_TalonSRX Turret = new WPI_TalonSRX(Constants.TURRET);
-  
  
 
   Joystick ButtonBoard = new Joystick(2);

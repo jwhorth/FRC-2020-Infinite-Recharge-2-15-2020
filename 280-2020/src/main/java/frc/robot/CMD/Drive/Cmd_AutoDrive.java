@@ -5,41 +5,62 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.CMD.Intake;
+package frc.robot.CMD.Drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drive_SUB;
 
-public class INTAKEIN_CMD extends CommandBase {
-  /**
-   * Creates a new INTAKEIN_CMD.
-   */
-  public INTAKEIN_CMD() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class Cmd_AutoDrive extends CommandBase {
+  private final Drive_SUB s_drivetrain;
+  int distance = 0;
+  double upperSpeed;
+  double lowerSpeed;
+  float sign;
+
+
+
+
+  public Cmd_AutoDrive(Drive_SUB subsystem, int distance, double upperSpeed, double lowerSpeed ) {
+    s_drivetrain = subsystem;
+    addRequirements(subsystem);
+    this.distance = distance;
+    this.upperSpeed = upperSpeed;
+    this.lowerSpeed = lowerSpeed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
+    s_drivetrain.drivePosReset();
+    s_drivetrain.resetGyro();
+    s_drivetrain.setSetPointPos(distance);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Intake.collect();
+    s_drivetrain.driveToPos(upperSpeed, lowerSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    s_drivetrain.driveStop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    sign = Math.signum(distance);
+        
+    if (sign == 1){
+        return s_drivetrain.isDoneDriving();
+    }
+    if (sign == -1){
+        return s_drivetrain.isDoneDrivingBack();
+    }
+    else{
+        return false;
   }
+}
 }

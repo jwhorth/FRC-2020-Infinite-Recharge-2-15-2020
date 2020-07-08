@@ -5,31 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.CMD.Intake;
+package frc.robot.CMD.Pivot;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pivot_SUB;
 
-public class INTAKEIN_CMD extends CommandBase {
+public class PivotEncoderReset_CMD extends CommandBase {
+  private final Pivot_SUB Pivot;
+
   /**
-   * Creates a new INTAKEIN_CMD.
+   * Creates a new PivotEncoderReset_CMD.
    */
-  public INTAKEIN_CMD() {
+  public PivotEncoderReset_CMD(Pivot_SUB subsystem) {
+    Pivot = subsystem;
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Intake.collect();
+    Pivot.resetArmPos();
   }
 
   // Called once the command ends or is interrupted.

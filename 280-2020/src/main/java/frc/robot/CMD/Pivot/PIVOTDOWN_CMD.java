@@ -20,16 +20,22 @@ public class PIVOTDOWN_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Pivot.SetPivotAlmostDownPOS();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Pivot.armStop();
   }
 
   // Returns true when the command should end.

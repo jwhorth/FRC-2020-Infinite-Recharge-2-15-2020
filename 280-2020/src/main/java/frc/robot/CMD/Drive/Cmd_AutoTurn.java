@@ -5,41 +5,52 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.CMD.Intake;
+package frc.robot.CMD.Drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drive_SUB;
 
-public class INTAKEIN_CMD extends CommandBase {
-  /**
-   * Creates a new INTAKEIN_CMD.
-   */
-  public INTAKEIN_CMD() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class Cmd_AutoTurn extends CommandBase {
+  
+
+  private final Drive_SUB s_drivetrain;
+
+  double angle = 0;
+  double upperSpeed = 0;
+  double lowerSpeed = 0;
+
+
+  public Cmd_AutoTurn(Drive_SUB subsystem, double angle, double upperSpeed, double lowerSpeed ) {
+    s_drivetrain = subsystem;
+    addRequirements(subsystem);
+    this.angle = angle;
+    this.upperSpeed = upperSpeed;
+    this.lowerSpeed = lowerSpeed;
+    s_drivetrain.resetGyro();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
+    s_drivetrain.resetGyro();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Intake.collect();
+    s_drivetrain.turn(angle, upperSpeed, lowerSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    s_drivetrain.driveStop();
+    s_drivetrain.resetGyro();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return s_drivetrain.isDoneTurning(angle);
   }
 }
