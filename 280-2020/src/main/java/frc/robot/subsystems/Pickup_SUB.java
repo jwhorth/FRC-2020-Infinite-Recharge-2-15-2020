@@ -36,6 +36,10 @@ public class Pickup_SUB extends SubsystemBase {
     intake.set(0);
   }
 
+  public void Expel(){
+    intake.set(Constants.NEGIntakeSpeed);
+  }
+
   //CMDs for theoretical hopper system
 
   //first hopper

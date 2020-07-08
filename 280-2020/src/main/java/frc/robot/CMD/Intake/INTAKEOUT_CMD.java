@@ -8,8 +8,10 @@
 package frc.robot.CMD.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pickup_SUB;
 
 public class INTAKEOUT_CMD extends CommandBase {
+  private static Pickup_SUB Intake;
   /**
    * Creates a new INTAKEOUT_CMD.
    */
@@ -20,17 +22,12 @@ public class INTAKEOUT_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-=======
-    
-
->>>>>>> Stashed changes
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IntakeOut.pushOut();
+    Intake.Expel();
   }
 
   // Called once the command ends or is interrupted.

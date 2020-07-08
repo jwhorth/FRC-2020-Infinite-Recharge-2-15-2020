@@ -8,8 +8,10 @@
 package frc.robot.CMD.Pivot;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Pivot_SUB;
 
 public class PIVOTDOWN_CMD extends CommandBase {
+  private static Pivot_SUB Pivot;
   /**
    * Creates a new PIVOTDOWN_CMD.
    */
@@ -20,10 +22,6 @@ public class PIVOTDOWN_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.subsystems.Climb_SUB;
 // SubSystem Imports
 //import frc.robot.subsystems.Climb_SUB;
 import frc.robot.subsystems.Drive_SUB;
@@ -25,17 +25,13 @@ import frc.robot.subsystems.Pivot_SUB;
 //import frc.robot.subsystems.Colorwheel_SUB;
 
 // CMD Imports
-<<<<<<< Updated upstream
-import frc.robot.CMD.Hopper.FEEDBALL_CMD;
-//import frc.robot.CMD.Shooter.NEUTRALSHOOT_CMD;
-
-=======
 import frc.robot.CMD.Intake.TESTmanualIntakeIn_CMD;
 import frc.robot.CMD.Intake.TESTmanualIntakeOut_CMD;
-import frc.robot.CMD.Shooter.BALLFEED_CMD;
+/*import frc.robot.CMD.Shooter.BALLFEED_CMD;
 import frc.robot.CMD.Shooter.SHOOTRPM10000_CMD;
 import frc.robot.CMD.Shooter.SHOOTRPM15000_CMD;
 import frc.robot.CMD.Turret.RESETENCODER_CMD;
+*/
 import frc.robot.CMD.Turret.SEEKHOME_CMD;
 import frc.robot.CMD.Turret.TESTManualTurretRight_CMD;
 import frc.robot.CMD.Turret.TESTmanualTurretLeft_CMD;
@@ -48,7 +44,6 @@ import frc.robot.CMD.Pivot.TESTmanualPivotUp_CMD;
 import frc.robot.CMD.Pivot.PIVOTUP_CMD;
 import frc.robot.CMD.Pivot.PivotEncoderReset_CMD;
 import frc.robot.CMD.Pivot.PIVOTDOWN_CMD;
->>>>>>> Stashed changes
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -62,15 +57,6 @@ public class RobotContainer {
   public static final Shooter_SUB Shooter = new Shooter_SUB();
   public static final Pickup_SUB PickUp = new Pickup_SUB();
   public static final Pivot_SUB Pivot = new Pivot_SUB();
-<<<<<<< Updated upstream
-
-
-  //buttons
- 
-  
-
-
-=======
   public static final Climb_SUB Climb = new Climb_SUB();
 
   private static final Joystick DRVOP = new Joystick(2);
@@ -108,7 +94,6 @@ public class RobotContainer {
 
 
   // Command Chains
->>>>>>> Stashed changes
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -130,10 +115,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-<<<<<<< Updated upstream
-   // b1.toggleWhenPressed(new NEUTRALSHOOT_CMD(Shooter));
-    //b2.toggleWhenPressed(new FEEDBALL_CMD(PickUp));
-=======
     /*
     climbdown.whenHeld(new CLIMBDOWN_CMD(Climb));
     climbup.whenHeld(new CLIMBUP_CMD(Climb));
@@ -153,12 +134,11 @@ public class RobotContainer {
     //rpmSLOW.toggleWhenPressed(new SHOOTRPM10000_CMD(Shooter));
     //ToggleLL.toggleWhenPressed(new TOGGLELL_CMD(Shooter));
     //Tracktest.toggleWhenPressed(new TRACK_CMD(Shooter));
-    ManUp.whenHeld(new TESTmanualPivotUp_CMD(Pivot));
-    ManDown.whenHeld(new TESTmanualPivotDown_CMD(Pivot));
+    ManUp.whenHeld(new TESTmanualPivotUp_CMD());
+    ManDown.whenHeld(new TESTmanualPivotDown_CMD());
     //SeekUp.whileHeld(new PIVOTUP_CMD(Pivot));
     //SeekDown.whileHeld(new PIVOTDOWN_CMD(Pivot));
    // ResetNEO.whenPressed(new PivotEncoderReset_CMD(Pivot));
->>>>>>> Stashed changes
     
     
 

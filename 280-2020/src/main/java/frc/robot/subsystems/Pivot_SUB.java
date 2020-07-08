@@ -32,18 +32,6 @@ public class Pivot_SUB extends SubsystemBase {
  // public CANPIDController pidLeft = new CANPIDController(PivotLeft);
  // public CANPIDController pidRight = new CANPIDController(PivotRight);
 
-<<<<<<< Updated upstream
-  public CANEncoder encoder0 = new CANEncoder(Pivot1);
-  public CANEncoder encoder1 = new CANEncoder(Pivot2);
-  
-  
-  private SpeedController Pivotgroup = new SpeedControllerGroup(Pivot1, Pivot2);
-  
-  //Postions for Pivot
-  public double DownPOS = -1000; //Down to 90 degrees
-  public double AlmostDownPOS = 1000; //slightly less than down
-  public double home = 0; //Home is home
-=======
   public CANEncoder encoderLeft = new CANEncoder(PivotLeft);
   public CANEncoder encoderRight = new CANEncoder(PivotRight);
 
@@ -65,18 +53,12 @@ public class Pivot_SUB extends SubsystemBase {
   public double DownPOS = 0; //Down to 90 degrees
   public double AlmostDownPOS = 0; //slightly less than down
   public double PivotHome = 0; //Home is home
->>>>>>> Stashed changes
   
   
   
   
   public Pivot_SUB() {
-<<<<<<< Updated upstream
-    Pivot1.setInverted(true);
-    
-=======
    /*
->>>>>>> Stashed changes
     //PID1
     pidLeft.setP(0);
     pidLeft.setI(0);
@@ -147,9 +129,8 @@ public boolean isArmHome(){
  // pidRight.setReference(POS, ControlType.kPosition);   
 //}
 
-<<<<<<< Updated upstream
  //Low hatch position
- public void setArmHatchLow(){
+ /*public void setArmHatchLow(){
   pid0.setReference(DownPOS, ControlType.kPosition);
   pid1.setReference(DownPOS, ControlType.kPosition);
 }
@@ -159,27 +140,7 @@ public void setArmCargoShip(){
   pid0.setReference(AlmostDownPOS, ControlType.kPosition);
   pid1.setReference(AlmostDownPOS, ControlType.kPosition);
 }
-
-=======
- //Pivot at down POS to use intake
- //public void SetPivotDownPOS(){
- // pidLeft.setReference(DownPOS, ControlType.kPosition);
- // pidRight.setReference(DownPOS, ControlType.kPosition);
-//}
-
-//Pivot at almostdown POS for picking up balls on the upper parts
-//public void SetPivotAlmostDownPOS(){
-  //pidLeft.setReference(AlmostDownPOS, ControlType.kPosition);
-  //pidRight.setReference(AlmostDownPOS, ControlType.kPosition);
-//}
-
-// Pivot at it's up home POS
-//public void PivotHome(){
-  //pidLeft.setReference(PivotHome, ControlType.kPosition);
-  //pidRight.setReference(PivotHome, ControlType.kPosition);
-//}
-
->>>>>>> Stashed changes
+*/
 
 @Override
   public void periodic() {

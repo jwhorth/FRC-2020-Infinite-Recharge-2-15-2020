@@ -50,6 +50,7 @@ public final class Constants {
     public static final double HOPPER1SPD = 0.5;
     public static final double HOPPER2SPD = 0.5;
     public static final double HOPPER3SPD = 0.5;
+    public static final double NEGIntakeSpeed = -.5;
     
     //Climb_SUB Motor ID Values
     public static final int JORDAN = 23; 
@@ -63,6 +64,14 @@ public final class Constants {
     public static final int PIVOT2 = 13;
     public static final int PIVOTLIMIT = 14;
 
+    //Pivot_SUB Motor Speeds
+    public static final int PivotUpStop = 0;
+    public static final int PivotDownStop = 0;
+    public static final int testPivotUpStop = 0;
+    public static final int testPivotDownStop = 0;
+     
+
+
     //Shooter_SUB Turret Constants
     public static final int TURRET = 0;
     
@@ -71,6 +80,8 @@ public final class Constants {
     public static final double TURRET_RIGHT_BOUND = 0;
     
 	public static final double TURRET_P = 0;
-	public static final double TURRET_D = 0;
+    public static final double TURRET_D = 0;
+    
+    
 
 }
