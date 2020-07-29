@@ -35,6 +35,8 @@ public class INDEXFORWARD_CMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Hopper.stopHopper1();
+    Hopper.stopHopper2();
   }
 
   // Returns true when the command should end.

@@ -24,18 +24,21 @@ public class INDEXREVERSE_CMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Hopper.stopHopper1();
-    Hopper.stopHopper2();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Hopper.reverseHopper1();
+    Hopper.reverseHopper2();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Hopper.stopHopper1();
+    Hopper.stopHopper2();
   }
 
   // Returns true when the command should end.

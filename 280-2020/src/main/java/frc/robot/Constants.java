@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -65,6 +63,9 @@ public final class Constants {
     public static final int PIVOTLIMIT = 14;
 
     //Pivot_SUB Motor Speeds
+    public static final double PivotSpeedUp = .3;
+    public static final double PivotSpeedDown = .3;
+
     public static final int PivotUpStop = 0;
     public static final int PivotDownStop = 0;
     public static final int testPivotUpStop = 0;

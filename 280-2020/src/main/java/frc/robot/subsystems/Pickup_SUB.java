@@ -56,6 +56,12 @@ public class Pickup_SUB extends SubsystemBase {
   public void stopHopper2() {
     hopper1.set(0);
   }
+  public void reverseHopper1(){
+    hopper1.set(-Constants.HOPPER1SPD);
+  }
+  public void reverseHopper2(){
+    hopper2.set(-Constants.HOPPER2SPD);
+  }
   
   //Pass-through motor
   public void startPASS() {

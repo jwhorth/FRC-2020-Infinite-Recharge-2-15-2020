@@ -25,8 +25,8 @@ import frc.robot.subsystems.Pivot_SUB;
 //import frc.robot.subsystems.Colorwheel_SUB;
 
 // CMD Imports
-import frc.robot.CMD.Intake.TESTmanualIntakeIn_CMD;
-import frc.robot.CMD.Intake.TESTmanualIntakeOut_CMD;
+//import frc.robot.CMD.Intake.TESTmanualIntakeIn_CMD;
+//import frc.robot.CMD.Intake.TESTmanualIntakeOut_CMD;
 /*import frc.robot.CMD.Shooter.BALLFEED_CMD;
 import frc.robot.CMD.Shooter.SHOOTRPM10000_CMD;
 import frc.robot.CMD.Shooter.SHOOTRPM15000_CMD;
@@ -41,9 +41,11 @@ import frc.robot.CMD.Climb.CLIMBDOWN_CMD;
 import frc.robot.CMD.Climb.CLIMBUP_CMD;
 import frc.robot.CMD.Pivot.TESTmanualPivotDown_CMD;
 import frc.robot.CMD.Pivot.TESTmanualPivotUp_CMD;
-import frc.robot.CMD.Pivot.PIVOTUP_CMD;
-import frc.robot.CMD.Pivot.PivotEncoderReset_CMD;
-import frc.robot.CMD.Pivot.PIVOTDOWN_CMD;
+import frc.robot.CMD.Intake.INTAKEIN_CMD;
+import frc.robot.CMD.Intake.INTAKEOUT_CMD;
+//import frc.robot.CMD.Pivot.PIVOTUP_CMD;
+//import frc.robot.CMD.Pivot.PivotEncoderReset_CMD;
+//import frc.robot.CMD.Pivot.PIVOTDOWN_CMD;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -88,9 +90,8 @@ public class RobotContainer {
   //private static JoystickButton ToggleLL = new JoystickButton(TEST, 6);
   private static JoystickButton ManUp = new JoystickButton(TEST,1);
   private static JoystickButton ManDown = new JoystickButton(TEST,2);
-  private static JoystickButton SeekUp = new JoystickButton(TEST,3);
-  private static JoystickButton SeekDown = new JoystickButton(TEST,4);
-  private static JoystickButton ResetNEO = new JoystickButton(TEST,5);
+  private static JoystickButton IntakeIn = new JoystickButton(TEST,3);
+  private static JoystickButton IntakeOut = new JoystickButton(TEST,4);
 
 
   // Command Chains
@@ -136,6 +137,9 @@ public class RobotContainer {
     //Tracktest.toggleWhenPressed(new TRACK_CMD(Shooter));
     ManUp.whenHeld(new TESTmanualPivotUp_CMD());
     ManDown.whenHeld(new TESTmanualPivotDown_CMD());
+    IntakeIn.toggleWhenPressed(new INTAKEIN_CMD());
+    IntakeOut.toggleWhenPressed(new INTAKEOUT_CMD());
+
     //SeekUp.whileHeld(new PIVOTUP_CMD(Pivot));
     //SeekDown.whileHeld(new PIVOTDOWN_CMD(Pivot));
    // ResetNEO.whenPressed(new PivotEncoderReset_CMD(Pivot));
