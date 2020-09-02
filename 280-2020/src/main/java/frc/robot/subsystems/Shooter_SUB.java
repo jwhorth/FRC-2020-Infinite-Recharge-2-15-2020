@@ -5,16 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
-
 //Make Public Voids for PID Values for Shooter
 //Make Shuffleboard Controls for PID for Turret
-
-
-
-
-
-
 
 package frc.robot.subsystems;
 
@@ -25,7 +17,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
 import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -33,10 +24,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-
-
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Constants;
 
@@ -44,6 +33,9 @@ public class Shooter_SUB extends SubsystemBase {
   WPI_TalonFX Kobe1 = new WPI_TalonFX(Constants.KOBE500_1);
   WPI_TalonFX Kobe2 = new WPI_TalonFX(Constants.KOBE500_2);
   WPI_TalonSRX Turret = new WPI_TalonSRX(Constants.TURRET);
+  WPI_TalonSRX intake = new WPI_TalonSRX(Constants.PICKUP);
+  WPI_TalonSRX hopper1 = new WPI_TalonSRX(Constants.HOPPER);
+  CANSparkMax Gasol = new CANSparkMax(Constants.GASOL_1, MotorType.kBrushless);
  
 
   Joystick ButtonBoard = new Joystick(2);
@@ -96,13 +88,27 @@ public class Shooter_SUB extends SubsystemBase {
 
 
 
+//Turret Flywheels CMDs
+
+
+public int getKobeSpeed() {
+  return Kobe1.getSelectedSensorVelocity();
+}
+
+public void spinKobeMotors(double speed) {
+  Kobe1.set(speed);
+}
+
+
+public void setKobeVelocityControl(double rpm) {
+  Kobe1.set(ControlMode.Velocity, rpm);
 
 
 
-//Methods ////////////////////////////////////////////////
 
 
- public void spinTurretMotor(double speed) {
+// Turret Rotation CMDs
+public void spinTurretMotor(double speed) {
   if (goLeft && speed < 0) {
     Turret.set(speed);
   } else if (goRight && speed > 0) {
@@ -111,36 +117,16 @@ public class Shooter_SUB extends SubsystemBase {
     Turret.set(0);
   }
 }
-/////////////////////////////////////////////////////////////////
-public void goHome() {
-  if ((turretCurrentPos > turretHome) && (turretCurrentPos - turretHome > 50)) {
-    // If you're to the right of the center, move left until you're within 50 ticks (turret deadband)
-    spinTurretMotor(0.3);
-  } else if ((turretCurrentPos < turretHome) && (turretCurrentPos - turretHome < -50)) {
-    // If you're to the left of the center, move right until you're within 50 ticks
-    spinTurretMotor(-0.3);
-  } else {
-    spinTurretMotor(0);
-  }
-}
-/////////////////////////////////////////////////////////////////
 
-public void track() {
-  if (limelightSeesTarget()) {
-    double heading_error = -tx + 0.5; // in order to change the target offset (in degrees), add it here
-    // How much the limelight is looking away from the target (in degrees)
-
-    double steering_adjust = turretPIDController.calculate(heading_error);
-    // Returns the next output of the PID controller (where it thinks the turret should go)
-    
-    double xDiff = 0 - steering_adjust;
-    double xCorrect = 0.05 * xDiff;
-    spinTurretMotor(xCorrect);
-  } else {
-    goHome();
-  }
+//
+public double turretDistFromHome() {
+  return Math.abs(turretCurrentPos - turretHome);
 }
-/////////////////////////////////////
+  //
+public double getTurretTicks() {
+  return Turret.getSelectedSensorPosition();
+}
+//
 public void hardStopConfiguration() {
   if (Turret.getSelectedSensorPosition() > turretRightStop) {
     // turretTalon.configPeakOutputReverse(0, 10);
@@ -157,31 +143,64 @@ public void hardStopConfiguration() {
     goLeft = true;
   }
 }
-/////////////////////////////////////////////////////
-public int getKobeSpeed() {
-  return Kobe1.getSelectedSensorVelocity();
-}
-///////////////////////////////////////////////////////
-public void spinKobeMotors(double speed) {
-  Kobe1.set(speed);
-}
-///////////////////////////////////////////////////////
+
+//Hopper Motor CMDs
+
+  public void startHopper1() {
+    hopper1.set(Constants.HOPPER1SPD);
+  }
+  //
+  public void stopHopper1() {
+    hopper1.set(0);
+  }
+ //
+  public void reverseHopper1(){
+    hopper1.set(-Constants.HOPPER1SPD);
+  }
+//
+//Feed Motor CMDs
+  public void startPASS() {
+    Gasol.set(Constants.GASOLSPD);
+  }
+  //
+  public void stopPASS() {
+    Gasol.set(0);
+  }
+//
 
 
-public void setKobeVelocityControl(double rpm) {
-  Kobe1.set(ControlMode.Velocity, rpm);
-}
-/////////////////////////////////////////////////
 
-public double getTurretTicks() {
-  return Turret.getSelectedSensorPosition();
-}
-///////////////////////
+  // Tracking CMDs
 
+  public void goHome() {
+    if ((turretCurrentPos > turretHome) && (turretCurrentPos - turretHome > 50)) {
+      // If you're to the right of the center, move left until you're within 50 ticks (turret deadband)
+      spinTurretMotor(0.3);
+    } else if ((turretCurrentPos < turretHome) && (turretCurrentPos - turretHome < -50)) {
+      // If you're to the left of the center, move right until you're within 50 ticks
+      spinTurretMotor(-0.3);
+    } else {
+      spinTurretMotor(0);
+    }
+  }
+//
+  public void track() {
+    if (limelightSeesTarget()) {
+      double heading_error = -tx + 0.5; // in order to change the target offset (in degrees), add it here
+      // How much the limelight is looking away from the target (in degrees)
+  
+      double steering_adjust = turretPIDController.calculate(heading_error);
+      // Returns the next output of the PID controller (where it thinks the turret should go)
+      
+      double xDiff = 0 - steering_adjust;
+      double xCorrect = 0.05 * xDiff;
+      spinTurretMotor(xCorrect);
+    } else {
+      goHome();
+    }
+  }
 
-
-
-
+//
 public void updateLimelight() {
   table = NetworkTableInstance.getDefault().getTable("limelight");
   tableTx = table.getEntry("tx");
@@ -192,12 +211,11 @@ public void updateLimelight() {
   tv = tableTv.getDouble(-1);
 }
  
-
+//
 public boolean limelightSeesTarget() {
   return tv == 1;
 }
-
-
+//
 
 public String isTarget() {
   if (limelightSeesTarget()) {
@@ -205,11 +223,8 @@ public String isTarget() {
   }
   return "NO TARGET";
 }
+//
 
-
-public double turretDistFromHome() {
-  return Math.abs(turretCurrentPos - turretHome);
-}
 
 
 

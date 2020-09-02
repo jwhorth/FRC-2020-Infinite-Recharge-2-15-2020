@@ -39,8 +39,8 @@ import frc.robot.CMD.Turret.TOGGLELL_CMD;
 import frc.robot.CMD.Turret.TRACK_CMD;
 import frc.robot.CMD.Climb.CLIMBDOWN_CMD;
 import frc.robot.CMD.Climb.CLIMBUP_CMD;
-import frc.robot.CMD.Pivot.TESTmanualPivotDown_CMD;
-import frc.robot.CMD.Pivot.TESTmanualPivotUp_CMD;
+//import frc.robot.CMD.Pivot.TESTmanualPivotDown_CMD;
+//import frc.robot.CMD.Pivot.TESTmanualPivotUp_CMD;
 import frc.robot.CMD.Intake.INTAKEIN_CMD;
 import frc.robot.CMD.Intake.INTAKEOUT_CMD;
 //import frc.robot.CMD.Pivot.PIVOTUP_CMD;
@@ -135,10 +135,7 @@ public class RobotContainer {
     //rpmSLOW.toggleWhenPressed(new SHOOTRPM10000_CMD(Shooter));
     //ToggleLL.toggleWhenPressed(new TOGGLELL_CMD(Shooter));
     //Tracktest.toggleWhenPressed(new TRACK_CMD(Shooter));
-    ManUp.whenHeld(new TESTmanualPivotUp_CMD());
-    ManDown.whenHeld(new TESTmanualPivotDown_CMD());
-    IntakeIn.toggleWhenPressed(new INTAKEIN_CMD());
-    IntakeOut.toggleWhenPressed(new INTAKEOUT_CMD());
+    
 
     //SeekUp.whileHeld(new PIVOTUP_CMD(Pivot));
     //SeekDown.whileHeld(new PIVOTDOWN_CMD(Pivot));

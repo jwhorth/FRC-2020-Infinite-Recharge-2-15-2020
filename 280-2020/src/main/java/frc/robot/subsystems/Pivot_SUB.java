@@ -13,6 +13,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
+import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Pivot_SUB extends SubsystemBase {
   
@@ -34,6 +36,7 @@ public class Pivot_SUB extends SubsystemBase {
 
   public CANEncoder encoderLeft = new CANEncoder(PivotLeft);
   public CANEncoder encoderRight = new CANEncoder(PivotRight);
+  Joystick Intakefunctions = new Joystick(4);
 
   public double PivotUpStop = Constants.PivotUpStop;
   public double PivotDownStop = Constants.PivotDownStop;
@@ -41,6 +44,10 @@ public class Pivot_SUB extends SubsystemBase {
   public double testPivotUpStop = Constants.testPivotUpStop;
   public double testPivotDownStop = Constants.testPivotDownStop;
 
+
+
+
+  
   boolean goUp = true;
   boolean goDown = true;
   
@@ -144,8 +151,31 @@ public void setArmCargoShip(){
 
 @Override
   public void periodic() {
-   
+
+    if (!Intakefunctions.getRawButton(1) && Intakefunctions.getRawButton(2)) 
+    {
+      PivotUp();}
+      else if (!Intakefunctions.getRawButton(2) && Intakefunctions.getRawButton(1))
+      {
+        PivotDown();
       }
+        else
+        {
+          armStop();
+        }
+
+      }
+
+    
+
+
+
+
+
+
+    // add the joystick stuff here ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+   
+      
   
   
 }

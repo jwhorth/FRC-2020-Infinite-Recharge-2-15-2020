@@ -11,7 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 
 public class Pickup_SUB extends SubsystemBase {
@@ -21,10 +23,10 @@ public class Pickup_SUB extends SubsystemBase {
   public Pickup_SUB() {
 
   }
-  WPI_TalonSRX intake = new WPI_TalonSRX(Constants.PICKUP);
-  WPI_TalonSRX hopper1 = new WPI_TalonSRX(Constants.HOPPER);
-  WPI_TalonSRX hopper2 = new WPI_TalonSRX(Constants.HOPPER_2);
-  CANSparkMax Gasol = new CANSparkMax(Constants.GASOL_1, MotorType.kBrushless);
+ 
+
+  Joystick PickUpFunctions = new Joystick(4);
+ 
   
 
   //CMDs for intake
@@ -40,40 +42,21 @@ public class Pickup_SUB extends SubsystemBase {
     intake.set(Constants.NEGIntakeSpeed);
   }
 
-  //CMDs for theoretical hopper system
-
-  //first hopper
-  public void startHopper1() {
-    hopper1.set(Constants.HOPPER1SPD);
-  }
-  public void stopHopper1() {
-    hopper1.set(0);
-  }
-  //second hopper
-  public void startHopper2() {
-    hopper1.set(Constants.HOPPER2SPD);
-  }
-  public void stopHopper2() {
-    hopper1.set(0);
-  }
-  public void reverseHopper1(){
-    hopper1.set(-Constants.HOPPER1SPD);
-  }
-  public void reverseHopper2(){
-    hopper2.set(-Constants.HOPPER2SPD);
-  }
   
-  //Pass-through motor
-  public void startPASS() {
-    Gasol.set(Constants.GASOLSPD);
-  }
-  public void stopPASS() {
-    Gasol.set(0);
-  }
 
+ 
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    
+    
+    
+    
+    }
+
+
+    
+
+    
   }
-}
+
